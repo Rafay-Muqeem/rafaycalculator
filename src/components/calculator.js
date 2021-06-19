@@ -4,20 +4,19 @@ export default function Calculator(props){
     
     var [total1, setTotal1] = useState('');
     var [total2, setTotal2] = useState('');
-    var [flag, setFlag] = useState(false);
-    // var [per, setPer] =  useState(false);
+    var [flag1, setFlag1] = useState(false);
     var [operand, setOperand] = useState('');
-
  
     const handleNumber = (num) => {
 
         props.Numbers(num);
-        if(flag === false){
+
+        if(flag1 === false){
             setTotal1(`${total1}${num}`);
             // setTotal1(total1.concat(num));
         }
 
-        else if(flag === true){
+        else if(flag1 === true){
             setTotal2(`${total2}${num}`);
             // setTotal2(total2.concat(num));
         }
@@ -25,24 +24,43 @@ export default function Calculator(props){
     }
 
     const handleOper = (oper) => {
+
         setOperand(oper);
-        setFlag(!flag);
+        setFlag1(!flag1);
         props.Oper(oper);
     }
 
     const handleAction = (num1, operator, num2) => {
-        console.log(num1, num2);
+        console.log(Number(num1), Number(num2));
+
         if(operator === "%"){
             props.Per(num1);
         }
         else{
             props.Enter(Number(num1), operator, Number(num2));
         }
-        
-        setFlag(false);
-        setTotal1('');
+
+        setFlag1(false);
+
+        let ans;
+        if(operand === "+"){
+            ans = num1 + num2;
+        }
+
+        else if(operand === "-"){
+            ans = num1 - num2;
+        }
+
+        else if(operand === "x"){
+            ans = num1 * num2;
+        }
+
+        else if(operand === "/"){
+            ans = num1 * num2;
+        }
+
+        setTotal1(Number(ans));
         setTotal2('');
-        
     }
 
     const handleClear = () => {
