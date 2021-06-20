@@ -7,7 +7,7 @@ function App() {
   return (
     <Provider store = {store}>
       <div className="App">
-        <h1>Calculator Under Construction!!</h1>
+        <h1>CALCULATOR</h1>
         <Main />
       </div>
     </Provider>

@@ -51,9 +51,7 @@ export const calReducer = ((state= initialState, action) => {
         }
 
         default: {
-            return(
-                state
-            );
+            return state;
         }
     };
 })
